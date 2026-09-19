@@ -1,5 +1,5 @@
 -- ============================================
--- FATASSES HUB - v40 (ANIMACIONES ULTRA COOL)
+-- FATASSES HUB - v41 (ESP Verde/Rojo)
 -- ============================================
 print("✨ Iniciando Fatasses Hub ULTRA...")
 
@@ -98,9 +98,7 @@ local function reproducirSonido(nombre, volumenCustom, pitch)
     task.delay(3, function() if sound and sound.Parent then sound:Destroy() end end)
 end
 
--- ============================================
 -- FRAME PRINCIPAL
--- ============================================
 local frame = Instance.new("Frame")
 frame.Name = "Main"
 frame.Size = UDim2.new(0, 0, 0, 0)
@@ -124,7 +122,6 @@ frameGrad.Color = ColorSequence.new({
 frameGrad.Rotation = 135
 frameGrad.Parent = frame
 
--- Rotación animada del gradiente
 task.spawn(function()
     while frame.Parent do
         TweenService:Create(frameGrad, TweenInfo.new(8, Enum.EasingStyle.Linear), { Rotation = 135 + 360 }):Play()
@@ -141,12 +138,10 @@ strokeGlow.Parent = frame
 
 local stroke = Instance.new("UIStroke")
 stroke.Color = C.accent2
-stroke.Color = C.accent2
 stroke.Thickness = 1.5
 stroke.Transparency = 0.3
 stroke.Parent = frame
 
--- Pulso del borde
 task.spawn(function()
     while frame.Parent do
         TweenService:Create(strokeGlow, TweenInfo.new(1.5, Enum.EasingStyle.Sine), { Transparency = 0.4, Thickness = 6 }):Play()
@@ -156,7 +151,6 @@ task.spawn(function()
     end
 end)
 
--- Open animation
 frame.Size = UDim2.new(0, 500, 0, 420)
 local openTween = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
     Size = UDim2.new(0, 500, 0, 420),
@@ -164,7 +158,6 @@ local openTween = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle
 frame.Size = UDim2.new(0, 0, 0, 0)
 openTween:Play()
 
--- Partículas flotantes (Sparkles rosas)
 task.spawn(function()
     while frame.Parent do
         for _ = 1, 6 do
@@ -179,7 +172,6 @@ task.spawn(function()
             sparkle.Rotation = math.random(0, 360)
             sparkle.ZIndex = 10
             sparkle.Parent = frame
-
             local tween = TweenService:Create(sparkle, TweenInfo.new(4, Enum.EasingStyle.Linear), {
                 Position = UDim2.new(math.random(), 0, -0.1, 0),
                 TextTransparency = 1,
@@ -193,9 +185,7 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- TOP BAR con efecto shimmer
--- ============================================
+-- TOP BAR
 local topBar = Instance.new("Frame")
 topBar.Size = UDim2.new(1, 0, 0, 52)
 topBar.BackgroundColor3 = C.bg_dark
@@ -221,7 +211,6 @@ tbLineGrad.Color = ColorSequence.new({
 })
 tbLineGrad.Parent = tbLine
 
--- Shimmer en el top bar
 task.spawn(function()
     while topBar.Parent do
         local shimmer = Instance.new("Frame")
@@ -244,7 +233,6 @@ task.spawn(function()
             NumberSequenceKeypoint.new(1, 1),
         })
         shimmerGrad.Parent = shimmer
-
         TweenService:Create(shimmer, TweenInfo.new(2, Enum.EasingStyle.Linear), {
             Position = UDim2.new(1.3, 0, 0, 0),
         }):Play()
@@ -253,7 +241,6 @@ task.spawn(function()
     end
 end)
 
--- LED de estado con pulso
 local statusDot = Instance.new("Frame")
 statusDot.Size = UDim2.new(0, 14, 0, 14)
 statusDot.Position = UDim2.new(0, 22, 0.5, -7)
@@ -272,7 +259,6 @@ task.spawn(function()
     end
 end)
 
--- Título con gradiente animado + typing effect
 local titleLbl = Instance.new("TextLabel")
 titleLbl.Size = UDim2.new(1, -120, 1, 0)
 titleLbl.Position = UDim2.new(0, 46, 0, 0)
@@ -291,7 +277,6 @@ titleGrad.Color = ColorSequence.new({
 })
 titleGrad.Parent = titleLbl
 
--- Rotación del gradiente del título
 task.spawn(function()
     while titleLbl.Parent do
         TweenService:Create(titleGrad, TweenInfo.new(3, Enum.EasingStyle.Linear), { Rotation = 360 }):Play()
@@ -300,7 +285,6 @@ task.spawn(function()
     end
 end)
 
--- Typing effect para el título
 task.spawn(function()
     task.wait(0.3)
     local texto = "FATASSES HUB"
@@ -315,7 +299,7 @@ local subLbl = Instance.new("TextLabel")
 subLbl.Size = UDim2.new(0, 44, 1, 0)
 subLbl.Position = UDim2.new(1, -84, 0, 0)
 subLbl.BackgroundTransparency = 1
-subLbl.Text = "v40"
+subLbl.Text = "v41"
 subLbl.TextColor3 = C.text_sub
 subLbl.TextScaled = true
 subLbl.Font = Enum.Font.GothamBold
@@ -370,9 +354,7 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- ============================================
 -- SIDEBAR
--- ============================================
 local sidebar = Instance.new("Frame")
 sidebar.Size = UDim2.new(0, 130, 1, -70)
 sidebar.Position = UDim2.new(0, 10, 0, 60)
@@ -383,9 +365,7 @@ sidebar.Parent = frame
 local sbCorner = Instance.new("UICorner"); sbCorner.CornerRadius = UDim.new(0, 16); sbCorner.Parent = sidebar
 local sbStroke = Instance.new("UIStroke"); sbStroke.Color = C.accent2; sbStroke.Thickness = 1; sbStroke.Transparency = 0.6; sbStroke.Parent = sidebar
 
--- ============================================
 -- PANEL
--- ============================================
 local panel = Instance.new("Frame")
 panel.Size = UDim2.new(1, -160, 1, -70)
 panel.Position = UDim2.new(0, 150, 0, 60)
@@ -413,9 +393,7 @@ layoutOpc.Padding = UDim.new(0, 10)
 layoutOpc.SortOrder = Enum.SortOrder.LayoutOrder
 layoutOpc.Parent = opcionesContainer
 
--- ============================================
 -- VARIABLES AIMLOCK/SILENT AIM
--- ============================================
 local aimlockOnAim = false
 local silentAimActivo = false
 local NOMBRE_TARGET_ACTUAL = ""
@@ -424,9 +402,7 @@ local characterTarget = nil
 local aimlockThread = nil
 local gunGui, aimButton, triggerButton, gunEvent
 
--- ============================================
--- TABS CON ANIMACIONES ULTRA COOL
--- ============================================
+-- TABS
 local tabsRefs = {}
 
 local function crearTab(nombre, yPos, comingSoon, index)
@@ -453,7 +429,6 @@ local function crearTab(nombre, yPos, comingSoon, index)
     local c = Instance.new("UICorner"); c.CornerRadius = UDim.new(0, 12); c.Parent = tab
     local s = Instance.new("UIStroke"); s.Color = C.border; s.Thickness = 1; s.Transparency = 0.5; s.Parent = tab
 
-    -- Indicador lateral
     local indicator = Instance.new("Frame")
     indicator.Size = UDim2.new(0, 4, 0, 0)
     indicator.Position = UDim2.new(0, 0, 0.5, 0)
@@ -470,7 +445,6 @@ local function crearTab(nombre, yPos, comingSoon, index)
     indGrad.Rotation = 90
     indGrad.Parent = indicator
 
-    -- Icono con rotación al hover
     local iconMap = {Esp = "👁", Scientist = "🧪", ["Class A"] = "🔒", ["Class S"] = "🎯", Experiment = "🔒", ["Extra Stuff"] = "⚡"}
 
     local icon = Instance.new("TextLabel")
@@ -510,7 +484,6 @@ local function crearTab(nombre, yPos, comingSoon, index)
     local shakeActivo = false
     local clickeando = false
 
-    -- 🔥 RIPPLE EFFECT
     local function crearRipple(x, y)
         local ripple = Instance.new("Frame")
         ripple.Size = UDim2.new(0, 0, 0, 0)
@@ -607,9 +580,7 @@ for i, nombre in ipairs(TODAS_PESTANAS) do
 end
 if tabsRefs["Esp"] then tabsRefs["Esp"].SetState("selected") end
 
--- ============================================
--- OPCIONES CON ANIMACIONES
--- ============================================
+-- OPCIONES
 local estadosOpciones = {}
 
 local function crearOpcion(nombre, callback)
@@ -680,7 +651,6 @@ local function crearOpcion(nombre, callback)
 
     setEstadoVisual(estado, false)
 
-    -- Pulso al activar
     local function pulseEffect()
         local pulse = Instance.new("Frame")
         pulse.Size = UDim2.new(1, 0, 1, 0)
@@ -918,9 +888,7 @@ local function crearInputTarget()
     end)
 end
 
--- ============================================
--- ACTUALIZAR PANEL CON TRANSICIONES
--- ============================================
+-- ACTUALIZAR PANEL
 local actualizandoPanel = false
 local panelIdActual = 0
 
@@ -998,9 +966,7 @@ task.spawn(function()
     end
 end)
 
--- ============================================
--- BOTÓN "S" ULTRA COOL
--- ============================================
+-- BOTÓN "S"
 local toggleBtn = Instance.new("TextButton")
 toggleBtn.Name = "ToggleBtn"
 toggleBtn.Size = UDim2.new(0, 70, 0, 70)
@@ -1028,7 +994,6 @@ btnGrad.Color = ColorSequence.new({
 btnGrad.Rotation = 45
 btnGrad.Parent = toggleBtn
 
--- Rotación continua del gradiente del botón
 task.spawn(function()
     while toggleBtn.Parent do
         TweenService:Create(btnGrad, TweenInfo.new(3, Enum.EasingStyle.Linear), { Rotation = 45 + 360 }):Play()
@@ -1037,7 +1002,6 @@ task.spawn(function()
     end
 end)
 
--- Múltiples anillos de glow
 local glowRing1 = Instance.new("Frame")
 glowRing1.Size = UDim2.new(1, 12, 1, 12)
 glowRing1.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -1446,100 +1410,187 @@ function detenerESP()
     if connRem then connRem:Disconnect(); connRem = nil end
 end
 
--- ESP PLAYERS
+-- ============================================
+-- ESP PLAYERS (VERDE normal / ROJO si tiene componentes de jugador)
+-- ============================================
 local playersESP = {}
-local function crearJ(p)
-    local ch = p.Character
-    if not ch or p == LocalPlayer then return end
-    if playersESP[p] then
-        pcall(function()
-            if playersESP[p].hl then playersESP[p].hl:Destroy() end
-            if playersESP[p].bb then playersESP[p].bb:Destroy() end
-        end)
-        playersESP[p] = nil
-    end
-    local hl = Instance.new("Highlight")
-    hl.Name = "ESP_P_HL"; hl.FillColor = Color3.fromRGB(255,130,180); hl.OutlineColor = Color3.fromRGB(255,170,210)
-    hl.FillTransparency = 0.55; hl.OutlineTransparency = 0
-    hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop; hl.Adornee = ch; hl.Parent = ch
-    local bg = Instance.new("BillboardGui")
-    bg.Name = "ESP_P_BB"; bg.Size = UDim2.new(0,160,0,60)
-    bg.StudsOffset = Vector3.new(0,3.5,0); bg.AlwaysOnTop = true; bg.Parent = ch
-    local n = Instance.new("TextLabel")
-    n.Size = UDim2.new(1,0,0.5,0); n.BackgroundTransparency = 1
-    n.TextColor3 = Color3.fromRGB(255,255,255); n.TextStrokeTransparency = 0
-    n.TextStrokeColor3 = Color3.fromRGB(0,0,0); n.TextScaled = true
-    n.Font = Enum.Font.GothamBold; n.Text = p.Name; n.Parent = bg
-    local s = Instance.new("TextLabel")
-    s.Name = "Salud"; s.Size = UDim2.new(1,0,0.5,0); s.Position = UDim2.new(0,0,0.5,0)
-    s.BackgroundTransparency = 1; s.TextColor3 = Color3.fromRGB(0,255,100)
-    s.TextStrokeTransparency = 0; s.TextStrokeColor3 = Color3.fromRGB(0,0,0)
-    s.TextScaled = true; s.Font = Enum.Font.GothamBold; s.Text = "100 / 100"; s.Parent = bg
-    playersESP[p] = {hl=hl, bb=bg, lbl=s, uHp=-1, uMx=-1, char=ch}
+
+-- Verificar si un modelo tiene componentes de jugador real
+local function esJugadorReal(modelo)
+    if not modelo or not modelo:IsA("Model") then return false end
+    if not modelo:FindFirstChildOfClass("Humanoid") then return false end
+    if not modelo:FindFirstChild("HumanoidRootPart") then return false end
+    if not modelo:FindFirstChild("Head") then return false end
+    return true
 end
-local function quitarJ(p)
-    local d = playersESP[p]; if not d then return end
+
+-- Buscar el nombre en la tabla de jugadores
+local function estaEnPlayers(nombreModelo)
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= LocalPlayer and p.Name == nombreModelo then
+            return p
+        end
+    end
+    return nil
+end
+
+local function crearJ(modelo, esRojo)
+    if not modelo then return end
+    if playersESP[modelo] then
+        local data = playersESP[modelo]
+        if data.esRojo ~= esRojo then
+            data.esRojo = esRojo
+            if data.hl then
+                if esRojo then
+                    data.hl.FillColor = Color3.fromRGB(255, 50, 50)
+                    data.hl.OutlineColor = Color3.fromRGB(255, 100, 100)
+                else
+                    data.hl.FillColor = Color3.fromRGB(50, 255, 100)
+                    data.hl.OutlineColor = Color3.fromRGB(100, 255, 150)
+                end
+            end
+        end
+        return
+    end
+
+    local hl = Instance.new("Highlight")
+    hl.Name = "ESP_P_HL"
+    if esRojo then
+        hl.FillColor = Color3.fromRGB(255, 50, 50)
+        hl.OutlineColor = Color3.fromRGB(255, 100, 100)
+    else
+        hl.FillColor = Color3.fromRGB(50, 255, 100)
+        hl.OutlineColor = Color3.fromRGB(100, 255, 150)
+    end
+    hl.FillTransparency = 0.55
+    hl.OutlineTransparency = 0
+    hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    hl.Adornee = modelo
+    hl.Parent = modelo
+
+    local bg = Instance.new("BillboardGui")
+    bg.Name = "ESP_P_BB"
+    bg.Size = UDim2.new(0, 160, 0, 60)
+    bg.StudsOffset = Vector3.new(0, 3.5, 0)
+    bg.AlwaysOnTop = true
+    bg.Parent = modelo
+
+    local n = Instance.new("TextLabel")
+    n.Size = UDim2.new(1, 0, 0.5, 0)
+    n.BackgroundTransparency = 1
+    n.TextColor3 = Color3.fromRGB(255, 255, 255)
+    n.TextStrokeTransparency = 0
+    n.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    n.TextScaled = true
+    n.Font = Enum.Font.GothamBold
+    n.Text = modelo.Name
+    n.Parent = bg
+
+    local s = Instance.new("TextLabel")
+    s.Name = "Salud"
+    s.Size = UDim2.new(1, 0, 0.5, 0)
+    s.Position = UDim2.new(0, 0, 0.5, 0)
+    s.BackgroundTransparency = 1
+    s.TextColor3 = Color3.fromRGB(0, 255, 100)
+    s.TextStrokeTransparency = 0
+    s.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    s.TextScaled = true
+    s.Font = Enum.Font.GothamBold
+    s.Text = "100 / 100"
+    s.Parent = bg
+
+    playersESP[modelo] = {
+        hl = hl, bb = bg, lbl = s,
+        uHp = -1, uMx = -1, esRojo = esRojo
+    }
+end
+
+local function quitarJ(modelo)
+    local d = playersESP[modelo]
+    if not d then return end
     pcall(function()
         if d.hl then d.hl:Destroy() end
         if d.bb then d.bb:Destroy() end
     end)
-    playersESP[p] = nil
+    playersESP[modelo] = nil
 end
-local conexionP = nil
-function iniciarESPPlayers()
-    if conexionP then return end
-    for _, p in ipairs(Players:GetPlayers()) do
-        if p ~= LocalPlayer then crearJ(p) end
-    end
-    Players.PlayerAdded:Connect(function(p)
-        if not espPlayersActivo then return end
-        p.CharacterAdded:Connect(function() task.wait(0.3); if espPlayersActivo then crearJ(p) end end)
-    end)
-    Players.PlayerRemoving:Connect(quitarJ)
-    for _, p in ipairs(Players:GetPlayers()) do
-        if p ~= LocalPlayer then
-            p.CharacterAdded:Connect(function()
-                if not espPlayersActivo then return end
-                task.wait(0.3); if espPlayersActivo then crearJ(p) end
-            end)
+
+local function limpiarTodosESPPlayers()
+    for m in pairs(playersESP) do quitarJ(m) end
+    playersESP = {}
+end
+
+-- Escanear Workspace buscando Models con nombre de jugador
+local function escanearPlayers()
+    local encontrados = {}
+
+    for _, obj in ipairs(Workspace:GetDescendants()) do
+        if obj:IsA("Model") then
+            if estaEnPlayers(obj.Name) then
+                if esJugadorReal(obj) then
+                    crearJ(obj, true)   -- 🔴 ROJO
+                else
+                    crearJ(obj, false)  -- 🟢 VERDE
+                end
+                encontrados[obj] = true
+            end
         end
     end
-    local acum = 0
-    conexionP = RunService.Heartbeat:Connect(function(dt)
+
+    for m in pairs(playersESP) do
+        if not encontrados[m] or not m.Parent then
+            quitarJ(m)
+        end
+    end
+end
+
+local conexionP = nil
+
+function iniciarESPPlayers()
+    if conexionP then return end
+    escanearPlayers()
+
+    Players.PlayerAdded:Connect(function(p)
         if not espPlayersActivo then return end
-        acum = acum + dt
-        if acum < 0.3 then return end
-        acum = 0
-        for _, p in ipairs(Players:GetPlayers()) do
-            if p ~= LocalPlayer then
-                local ch = p.Character
-                local d = playersESP[p]
-                if ch and not d then crearJ(p)
-                elseif ch and d then
-                    if d.char ~= ch or not d.hl or not d.hl.Parent then crearJ(p); d = playersESP[p] end
-                    if d and d.lbl then
-                        local hum = ch:FindFirstChildOfClass("Humanoid")
+        task.wait(0.3)
+        escanearPlayers()
+    end)
+    Players.PlayerRemoving:Connect(function(p)
+        task.wait(0.3)
+        escanearPlayers()
+    end)
+
+    conexionP = task.spawn(function()
+        while espPlayersActivo do
+            task.wait(1)
+            if espPlayersActivo then
+                escanearPlayers()
+                for m, d in pairs(playersESP) do
+                    if m and m.Parent and d.lbl then
+                        local hum = m:FindFirstChildOfClass("Humanoid")
                         if hum then
-                            local hp = math.floor(hum.Health); local mx = math.floor(hum.MaxHealth)
+                            local hp = math.floor(hum.Health)
+                            local mx = math.floor(hum.MaxHealth)
                             if hp ~= d.uHp or mx ~= d.uMx then
-                                d.uHp = hp; d.uMx = mx
+                                d.uHp = hp
+                                d.uMx = mx
                                 d.lbl.Text = hp .. " / " .. mx
-                                local r = hp/math.max(1,mx)
-                                if r > 0.6 then d.lbl.TextColor3 = Color3.fromRGB(0,255,100)
-                                elseif r > 0.3 then d.lbl.TextColor3 = Color3.fromRGB(255,200,0)
-                                else d.lbl.TextColor3 = Color3.fromRGB(255,60,60) end
+                                local r = hp / math.max(1, mx)
+                                if r > 0.6 then d.lbl.TextColor3 = Color3.fromRGB(0, 255, 100)
+                                elseif r > 0.3 then d.lbl.TextColor3 = Color3.fromRGB(255, 200, 0)
+                                else d.lbl.TextColor3 = Color3.fromRGB(255, 60, 60) end
                             end
                         end
                     end
-                elseif not ch and d then quitarJ(p) end
+                end
             end
         end
     end)
 end
+
 function detenerESPPlayers()
-    if conexionP then conexionP:Disconnect(); conexionP = nil end
-    for p in pairs(playersESP) do quitarJ(p) end
-    playersESP = {}
+    if conexionP then conexionP = nil end
+    limpiarTodosESPPlayers()
 end
 
 -- IA COMPLETA
@@ -1773,4 +1824,4 @@ function detenerIA()
 end
 
 actualizarPanel()
-print("✨ Fatasses Hub v40 cargado - ULTRA COOL")
+print("🎀 Fatasses Hub v41 cargado - ESP Verde/Rojo")
